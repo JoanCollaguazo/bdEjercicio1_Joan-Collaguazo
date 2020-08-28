@@ -1,4 +1,5 @@
 
+import java.lang.reflect.Array;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -23,21 +24,22 @@ public class Main {
             //TABLA
             numeros[i] = n;
 
-            ///VERIFICACION----------------------------------------------------------------           
-            for (int j = 0; j < n; j++) {
-                int li;
-                li = j;
-                if (li-1 == n ) {
-                    JOptionPane.showMessageDialog(null, "NUMERO REPETIDO, ingrese por favor otro numero");
-                    System.out.println(n);
-                }
-            }
-
+            ///VERIFICACION----------------------------------------------------------------                        
+//            for (int j = 0; j < numeros.length; j++) {
+//                int li;
+//                li = j;
+//                if (li == n ) {
+//                    JOptionPane.showMessageDialog(null, "NUMERO REPETIDO, ingrese por favor otro numero");
+//                    System.out.println(n);
+//                }
+//            }
             //-------------------------------------------------------------------------------
             if (n == t.nextInt(v)) {
+                double b = 1;
                 System.out.println("Ganaste");
                 System.out.println(n);
                 JOptionPane.showMessageDialog(null, "FELICIDADES NÚMERO ACERTADO");
+
             } else {
                 System.out.println("Perdiste");
                 System.out.println(n);
