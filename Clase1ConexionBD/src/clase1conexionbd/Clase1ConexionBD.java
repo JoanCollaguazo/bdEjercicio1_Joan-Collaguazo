@@ -4,47 +4,43 @@
  * and open the template in the editor.
  */
 package clase1conexionbd;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
  * @author OxOrboy!
  */
 public class Clase1ConexionBD {
+
     //CREACION DE UNA FUNCION:
-    static Connection con ;
+    private static Connection conexion;
     //DECLARAMOS LOS DATOS DE CONEXION (DATOS STRING PARA INSERTAR VALORES DE ESE TIPO):
-    private static final String driver="com.mysql.jdbc.Driver";
-    private static final String user="root";
-    private static final String pass="ANTONYj1";
-    private static final String url="jdbc:mysql://localhost:3306/bdejercicio1? useUnicode=true&use"
+    private static final String driver = "com.mysql.jdbc.Driver";
+    private static final String user = "root";
+    private static final String pass = "ANTONYj1";
+    private static final String url = "jdbc:mysql://localhost:3306/bdejercicio1? useUnicode=true&use"
             + " JDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     //METODO CONECTOR
-    public void conector(){
+    public Connection conectarBaseDatos() {
         //RESETEAMOS A NULL LA CONEXION A LA RED
-        con=null;
-        try{
+        conexion = null;
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             //NOS CONECTAMOS A LA BD
-            con=(Connection)DriverManager.getConnection(url,user,pass);
+            conexion = (Connection) DriverManager.getConnection(url, user, pass);
             //COMPROBAR LA CONEXION:
-            if(con!=null){
+            if (conexion != null) {
                 System.out.println("Conexion Exitosa");
-            
+
             }
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error de conexion " + e.getMessage());
+
         }
-        catch(ClassNotFoundException|SQLException e){
-            System.out.println("Error de conexion "+e);
-        
-        }
-               
-    
+        return conexion;
     }
 
 }

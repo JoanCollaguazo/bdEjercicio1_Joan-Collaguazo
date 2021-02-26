@@ -66,7 +66,6 @@ public class Utilidades {
         //VERFICIAR SI EL NUMERO COMIENZA EN 0
         // Inserto el numero que debe ir al inicio del patron
         Pattern p=Pattern.compile("[0]");
- 
         // Buscamos las coincidencias el el primer caracter del numero de telefono
         Matcher matcher=p.matcher(numero.substring(0,1)); 
         if(matcher.matches())
@@ -100,6 +99,18 @@ public class Utilidades {
             return true;
         } else {
             return false;
-        }
+        }                
     }
+ 
+    	public boolean validarCodigo(String cadena) {
+		if (cadena.matches("[0-9]*")) {
+			return true;
+                        
+		} else {
+                    System.out.println("NO INGRESO DATOS NUMERICOS EN CAMPO CODIGO");
+			return false;
+		}
+	}
+    
+    
 }

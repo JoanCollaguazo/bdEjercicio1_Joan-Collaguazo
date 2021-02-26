@@ -29,12 +29,11 @@ public class Persona {
         this.correo = correo;
         this.telefono = telefono;
     }
-//    public Persona(String nombreedit){
-//        this.editnombre(nombre);
-//        
-//    
-//    
-//    }
+
+    public Persona(int idPersona) {
+        this.idPersona = idPersona;
+    }
+    
 
     public String getCedula() {
         return cedula;
@@ -96,4 +95,16 @@ public class Persona {
         this.nombre = nombre;
     }
 
+    public Persona() {
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
+    }
+
+    public Persona get(int rowIndex) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

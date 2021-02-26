@@ -54,7 +54,7 @@ public class PersonaBD {
         //CONEXION CON LA BASE DE DATOS 
         Connection con = null;
         //CONTATENANDO LA OPCION DE ACTUALIZACION
-        String sql = "UPDATE `bdejercicio1`.`persona` SET `idPersona` = '"+String.valueOf(persona.getIdPersona())+"', `cedula` = '" + persona.getCedula() + "', `nombre` = '" + persona.getNombre() + "', `apellidos` = '" + persona.getApellido() + "', `direccion` = '" + persona.getDireccion() + "', `correo` = '" + persona.getCorreo() + "', `telefono` = '" + persona.getTelefono() + "' WHERE (`idPersona` = '" + String.valueOf(persona.getIdPersona()) + "');";
+        String sql = "UPDATE `bdejercicio1`.`persona` SET `idPersona` = '" + String.valueOf(persona.getIdPersona()) + "', `cedula` = '" + persona.getCedula() + "', `nombre` = '" + persona.getNombre() + "', `apellidos` = '" + persona.getApellido() + "', `direccion` = '" + persona.getDireccion() + "', `correo` = '" + persona.getCorreo() + "', `telefono` = '" + persona.getTelefono() + "' WHERE (`idPersona` = '" + String.valueOf(persona.getIdPersona()) + "');";
         try {
             Clase1ConexionBD conexion = new Clase1ConexionBD();
             con = conexion.conectarBaseDatos();
@@ -190,4 +190,135 @@ public class PersonaBD {
 
     }
 
+    public List<Persona> obtenerPersonaNombre(String nombre) {
+        Connection con = null;
+        Statement stm = null;
+        //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
+        ResultSet rs = null;
+        List<Persona> personasEncontradas = new ArrayList<>();
+        String sql = "SELECT * FROM bdejercicio1.persona WHERE nombre like \"%" + nombre + "%\"";
+
+        try {
+            con = new Clase1ConexionBD().conectarBaseDatos();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Persona c = new Persona();
+                c.setIdPersona(rs.getInt(1));
+                c.setCedula(rs.getString(2));
+                c.setNombre(rs.getString(3));
+                c.setApellido(rs.getNString(4));
+                c.setDireccion(rs.getString(5));
+                c.setCorreo(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                personasEncontradas.add(c);
+            }
+            stm.close();
+            rs.close();
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return personasEncontradas;
+    }
+
+    public List<Persona> obtenerPersonaApellidos(String apellidos) {
+        Connection con = null;
+        Statement stm = null;
+        //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
+        ResultSet rs = null;
+        List<Persona> personasEncontradasApellido = new ArrayList<>();
+        String sql = "SELECT * FROM bdejercicio1.persona WHERE apellidos like \"%" + apellidos + "%\"";
+
+        try {
+            con = new Clase1ConexionBD().conectarBaseDatos();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Persona c = new Persona();
+                c.setIdPersona(rs.getInt(1));
+                c.setCedula(rs.getString(2));
+                c.setNombre(rs.getString(3));
+                c.setApellido(rs.getNString(4));
+                c.setDireccion(rs.getString(5));
+                c.setCorreo(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                personasEncontradasApellido.add(c);
+            }
+            stm.close();
+            rs.close();
+            con.close();    
+
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return personasEncontradasApellido;
+
+    }
+
+    public List<Persona> obtenerPersonaTelefono1(String telefono) {
+        Connection con = null;
+        Statement stm = null;
+        //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
+        ResultSet rs = null;
+        List<Persona> personasEncontradasTelefono = new ArrayList<>();
+        String sql = "SELECT * FROM bdejercicio1.persona WHERE telefono like \"%" + telefono + "%\"";
+        try {
+            con = new Clase1ConexionBD().conectarBaseDatos();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Persona c = new Persona();
+                c.setIdPersona(rs.getInt(1));
+                c.setCedula(rs.getString(2));
+                c.setNombre(rs.getString(3));
+                c.setApellido(rs.getNString(4));
+                c.setDireccion(rs.getString(5));
+                c.setCorreo(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                personasEncontradasTelefono.add(c);
+            }
+            stm.close();
+            rs.close();
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return personasEncontradasTelefono;
+
+    }
+        public List<Persona> obtenerPersonaCorreo(String correo) {
+        Connection con = null;
+        Statement stm = null;
+        //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
+        ResultSet rs = null;
+        List<Persona> personasEncontradasCorreo = new ArrayList<>();
+        String sql = "SELECT * FROM bdejercicio1.persona WHERE correo like \"%" + correo + "%\"";
+        try {
+            con = new Clase1ConexionBD().conectarBaseDatos();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Persona c = new Persona();
+                c.setIdPersona(rs.getInt(1));
+                c.setCedula(rs.getString(2));
+                c.setNombre(rs.getString(3));
+                c.setApellido(rs.getNString(4));
+                c.setDireccion(rs.getString(5));
+                c.setCorreo(rs.getString(6));
+                c.setTelefono(rs.getString(7));
+                personasEncontradasCorreo.add(c);
+            }
+            stm.close();
+            rs.close();
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return personasEncontradasCorreo;
+
+    }
 }
