@@ -5,30 +5,44 @@
  */
 package clase1conexionbd;
 
+import java.sql.Date;
+
 /**
  *
  * @author joang
  */
 public class Inventario {
+
     private int idInventario;
-    private String codigoPro;
-    private String descripcion;
-    private String preciosCompra;
-    private String preciosVenta;
+    private String codProducto;
     private String cantProductos;
-    
-    
-    public Inventario(){
-    
+    private String descripcion;
+    private double precioCompraSinIVA;
+    private double precioCompraConIVA;
+    private double precioMayorista;
+    private double precioClienteFjo;
+    private double precioClienteNormal;
+    private Date fechaCaducidad;
+    private Date fechaRegistro;
+    private Date fechaActualizacion;
+
+    public Inventario() {
+
     }
 
-    public Inventario(int idInventario, String codigoPro, String descripcion, String preciosCompra, String preciosVenta, String cantProductos) {
+    public Inventario(int idInventario, String codProducto, String cantProductos, String descripcion, double precioCompraSinIVA, double precioCompraConIVA, double precioMayorista, double precioClienteFjo, double precioClienteNormal, Date fechaCaducidad, Date fechaRegistro, Date fechaActualizacion) {
         this.idInventario = idInventario;
-        this.codigoPro = codigoPro;
-        this.descripcion = descripcion;
-        this.preciosCompra = preciosCompra;
-        this.preciosVenta = preciosVenta;
+        this.codProducto = codProducto;
         this.cantProductos = cantProductos;
+        this.descripcion = descripcion;
+        this.precioCompraSinIVA = precioCompraSinIVA;
+        this.precioCompraConIVA = precioCompraConIVA;
+        this.precioMayorista = precioMayorista;
+        this.precioClienteFjo = precioClienteFjo;
+        this.precioClienteNormal = precioClienteNormal;
+        this.fechaCaducidad = fechaCaducidad;
+        this.fechaRegistro = fechaRegistro;
+        this.fechaActualizacion = fechaActualizacion;
     }
 
     public int getIdInventario() {
@@ -39,36 +53,12 @@ public class Inventario {
         this.idInventario = idInventario;
     }
 
-    public String getCodigoPro() {
-        return codigoPro;
+    public String getCodProducto() {
+        return codProducto;
     }
 
-    public void setCodigoPro(String codigoPro) {
-        this.codigoPro = codigoPro;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getPreciosCompra() {
-        return preciosCompra;
-    }
-
-    public void setPreciosCompra(String preciosCompra) {
-        this.preciosCompra = preciosCompra;
-    }
-
-    public String getPreciosVenta() {
-        return preciosVenta;
-    }
-
-    public void setPreciosVenta(String preciosVenta) {
-        this.preciosVenta = preciosVenta;
+    public void setCodProducto(String codProducto) {
+        this.codProducto = codProducto;
     }
 
     public String getCantProductos() {
@@ -79,26 +69,80 @@ public class Inventario {
         this.cantProductos = cantProductos;
     }
 
-    @Override
-    public String toString() {
-        return "Inventario{" + "idInventario=" + idInventario + ", codigoPro=" + codigoPro + ", descripcion=" + descripcion + ", preciosCompra=" + preciosCompra + ", preciosVenta=" + preciosVenta + ", cantProductos=" + cantProductos + '}';
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    public double getPrecioCompraSinIVA() {
+        return precioCompraSinIVA;
+    }
+
+    public void setPrecioCompraSinIVA(double precioCompraSinIVA) {
+        this.precioCompraSinIVA = precioCompraSinIVA;
+    }
+
+    public double getPrecioCompraConIVA() {
+        return precioCompraConIVA;
+    }
+
+    public void setPrecioCompraConIVA(double precioCompraConIVA) {
+        this.precioCompraConIVA = precioCompraConIVA;
+    }
+
+    public double getPrecioMayorista() {
+        return precioMayorista;
+    }
+
+    public void setPrecioMayorista(double precioMayorista) {
+        this.precioMayorista = precioMayorista;
+    }
+
+    public double getPrecioClienteFjo() {
+        return precioClienteFjo;
+    }
+
+    public void setPrecioClienteFjo(double precioClienteFjo) {
+        this.precioClienteFjo = precioClienteFjo;
+    }
+
+    public double getPrecioClienteNormal() {
+        return precioClienteNormal;
+    }
+
+    public void setPrecioClienteNormal(double precioClienteNormal) {
+        this.precioClienteNormal = precioClienteNormal;
+    }
+
+    public Date getFechaCaducidad() {
+        return fechaCaducidad;
+    }
+
+    public void setFechaCaducidad(Date fechaCaducidad) {
+        this.fechaCaducidad = fechaCaducidad;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventario{" + "idInventario=" + idInventario + ", codProducto=" + codProducto + ", cantProductos=" + cantProductos + ", descripcion=" + descripcion + ", precioCompraSinIVA=" + precioCompraSinIVA + ", precioCompraConIVA=" + precioCompraConIVA + ", precioMayorista=" + precioMayorista + ", precioClienteFjo=" + precioClienteFjo + ", precioClienteNormal=" + precioClienteNormal + ", fechaCaducidad=" + fechaCaducidad + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + '}';
+    }
 }

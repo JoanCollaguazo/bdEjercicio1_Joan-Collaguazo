@@ -28,8 +28,15 @@ public class PersonaBD {
         Statement stm = null;
         //CONEXION CON LA BASE DE DATOS
         Connection con = null;
+        String sql;
+        if (persona.getFechaNacimiento() == null) {
+            sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "');";
+        }else{
+        sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`, `fecha_nacimiento` ) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "', '" + persona.getFechaNacimiento()+ "');";
+        }
+
         //SENTENCIA SQL
-        String sql = "INSERT INTO `bdejercicio1`.`persona` (`idPersona`, `cedula`, `nombre`, `apellidos`, `direccion`, `correo`, `telefono`) VALUES ('" + String.valueOf(persona.getIdPersona()) + "', '" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "')";
+        
         try {
             //ES UNA INSTANCIA DE LA CONEXION PREVIAMENTE CREADA
             Clase1ConexionBD conexion = new Clase1ConexionBD();
@@ -54,7 +61,7 @@ public class PersonaBD {
         //CONEXION CON LA BASE DE DATOS 
         Connection con = null;
         //CONTATENANDO LA OPCION DE ACTUALIZACION
-        String sql = "UPDATE `bdejercicio1`.`persona` SET `idPersona` = '" + String.valueOf(persona.getIdPersona()) + "', `cedula` = '" + persona.getCedula() + "', `nombre` = '" + persona.getNombre() + "', `apellidos` = '" + persona.getApellido() + "', `direccion` = '" + persona.getDireccion() + "', `correo` = '" + persona.getCorreo() + "', `telefono` = '" + persona.getTelefono() + "' WHERE (`idPersona` = '" + String.valueOf(persona.getIdPersona()) + "');";
+        String sql = "UPDATE `ejercicio`.`persona` SET `cedula` = '" + persona.getCedula() + "', `nombres` = '" + persona.getNombre() + "', `apellidos` = '" + persona.getApellido() + "', `direccion` = '" + persona.getDireccion() + "', `correo` = '" + persona.getCorreo() + "', `telefono` = '" + persona.getTelefono() + "', `fecha_registro` = '" + persona.getFechaRegistro() + "', `genero` = '" + persona.getGenero() + "' WHERE (`idpersona` = '" + persona.getIdPersona() + "');";
         try {
             Clase1ConexionBD conexion = new Clase1ConexionBD();
             con = conexion.conectarBaseDatos();
@@ -93,7 +100,7 @@ public class PersonaBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM bdejercicio1.persona;";
+        String sql = "SELECT * FROM ejercicio.persona;";
 
         List<Persona> listaPersona = new ArrayList<Persona>();
 
@@ -106,12 +113,14 @@ public class PersonaBD {
                 c.setIdPersona(rs.getInt(1));
                 c.setCedula(rs.getString(2));
                 c.setNombre(rs.getString(3));
-                c.setApellido(rs.getNString(4));
+                c.setApellido(rs.getString(4));
                 c.setDireccion(rs.getString(5));
                 c.setCorreo(rs.getString(6));
                 c.setTelefono(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
+                //c.setFechaActualizacion(rs.getDate(10));
                 listaPersona.add(c);
-
             }
             stm.close();
             rs.close();
@@ -129,7 +138,7 @@ public class PersonaBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         Persona c = null;
-        String sql = "SELECT * FROM bdejercicio1.persona WHERE cedula = " + cedula + "";
+        String sql = "SELECT * FROM ejercicio.persona WHERE cedula = " + cedula + "";
 
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
@@ -144,6 +153,9 @@ public class PersonaBD {
                 c.setDireccion(rs.getString(5));
                 c.setCorreo(rs.getString(6));
                 c.setTelefono(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
+                //c.setFechaActualizacion(rs.getDate(10));
 
             }
             stm.close();
@@ -162,7 +174,7 @@ public class PersonaBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         Persona c = null;
-        String sql = "SELECT * FROM bdejercicio1.persona WHERE telefono = " + telefono + "";
+        String sql = "SELECT * FROM ejercicio.persona WHERE telefono = " + telefono + "";
 
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
@@ -177,6 +189,9 @@ public class PersonaBD {
                 c.setDireccion(rs.getString(5));
                 c.setCorreo(rs.getString(6));
                 c.setTelefono(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
+                //c.setFechaActualizacion(rs.getDate(10));
 
             }
             stm.close();
@@ -196,7 +211,7 @@ public class PersonaBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         List<Persona> personasEncontradas = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.persona WHERE nombre like \"%" + nombre + "%\"";
+        String sql = "SELECT * FROM ejercicio.persona WHERE nombre like \"%" + nombre + "%\"";
 
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
@@ -211,6 +226,9 @@ public class PersonaBD {
                 c.setDireccion(rs.getString(5));
                 c.setCorreo(rs.getString(6));
                 c.setTelefono(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
+                //c.setFechaActualizacion(rs.getDate(10));
                 personasEncontradas.add(c);
             }
             stm.close();
@@ -229,7 +247,7 @@ public class PersonaBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         List<Persona> personasEncontradasApellido = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.persona WHERE apellidos like \"%" + apellidos + "%\"";
+        String sql = "SELECT * FROM ejercicio.persona WHERE apellidos like \"%" + apellidos + "%\"";
 
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
@@ -244,11 +262,14 @@ public class PersonaBD {
                 c.setDireccion(rs.getString(5));
                 c.setCorreo(rs.getString(6));
                 c.setTelefono(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
+                //c.setFechaActualizacion(rs.getDate(10));
                 personasEncontradasApellido.add(c);
             }
             stm.close();
             rs.close();
-            con.close();    
+            con.close();
 
         } catch (Exception e) {
             System.out.println("ERROR: " + e.getMessage());
@@ -263,7 +284,7 @@ public class PersonaBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         List<Persona> personasEncontradasTelefono = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.persona WHERE telefono like \"%" + telefono + "%\"";
+        String sql = "SELECT * FROM ejercicio.persona WHERE telefono like \"%" + telefono + "%\"";
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
@@ -277,6 +298,9 @@ public class PersonaBD {
                 c.setDireccion(rs.getString(5));
                 c.setCorreo(rs.getString(6));
                 c.setTelefono(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
+                //c.setFechaActualizacion(rs.getDate(10));
                 personasEncontradasTelefono.add(c);
             }
             stm.close();
@@ -289,13 +313,14 @@ public class PersonaBD {
         return personasEncontradasTelefono;
 
     }
-        public List<Persona> obtenerPersonaCorreo(String correo) {
+
+    public List<Persona> obtenerPersonaCorreo(String correo) {
         Connection con = null;
         Statement stm = null;
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         List<Persona> personasEncontradasCorreo = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.persona WHERE correo like \"%" + correo + "%\"";
+        String sql = "SELECT * FROM ejercicio.persona WHERE correo like \"%" + correo + "%\"";
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
@@ -309,6 +334,9 @@ public class PersonaBD {
                 c.setDireccion(rs.getString(5));
                 c.setCorreo(rs.getString(6));
                 c.setTelefono(rs.getString(7));
+                c.setFechaRegistro(rs.getDate(8));
+                c.setGenero(rs.getInt(9));
+                //c.setFechaActualizacion(rs.getDate(10));
                 personasEncontradasCorreo.add(c);
             }
             stm.close();

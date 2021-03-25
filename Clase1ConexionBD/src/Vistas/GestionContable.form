@@ -262,7 +262,7 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jDateChooser1" min="-2" pref="217" max="-2" attributes="0"/>
+                                      <Component id="JDateFechaNacimiento" min="-2" pref="217" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
@@ -359,7 +359,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                              <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
+                              <Component id="JDateFechaNacimiento" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -553,7 +553,10 @@
                     <Property name="text" type="java.lang.String" value="FECHA DE NACIMIENTO:"/>
                   </Properties>
                 </Component>
-                <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
+                <Component class="com.toedter.calendar.JDateChooser" name="JDateFechaNacimiento">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="y - mm - dd "/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -911,6 +914,9 @@
                 <Component class="javax.swing.JTextField" name="txtDireccion">
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser2">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="y - mm - dd "/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -1328,10 +1334,19 @@
                   </Properties>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaCaducidad">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="y - mm - dd "/>
+                  </Properties>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaRegistro">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="y - mm - dd y"/>
+                  </Properties>
                 </Component>
                 <Component class="com.toedter.calendar.JDateChooser" name="jDateFechaActualizacion">
+                  <Properties>
+                    <Property name="dateFormatString" type="java.lang.String" value="y - mm - dd "/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

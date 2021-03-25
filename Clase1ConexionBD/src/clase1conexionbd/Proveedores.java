@@ -5,6 +5,8 @@
  */
 package clase1conexionbd;
 
+import java.sql.Date;
+
 /**
  *
  * @author joang
@@ -19,22 +21,24 @@ public class Proveedores {
     private String apellidoRepresentanteLegal;
     private String telefono;
     private String correo;
+    private String direccion;
+    private Date fechaRegistro;
     
     public Proveedores(){
     }
 
-    public Proveedores(int idProveedores, String ruc, String razonSocial, String tipoActividad, String nombreRepresentateLegal, String apellidoRepresentanteLegal, String telefono, String correo) {
+    public Proveedores(int idProveedores, String ruc, String razonSocial, String tipoActividad, String nombreRepresentanteLegal, String apellidoRepresentanteLegal, String telefono, String correo, String direccion, Date fechaRegistro) {
         this.idProveedores = idProveedores;
         this.ruc = ruc;
         this.razonSocial = razonSocial;
         this.tipoActividad = tipoActividad;
-        this.nombreRepresentanteLegal = nombreRepresentateLegal;
+        this.nombreRepresentanteLegal = nombreRepresentanteLegal;
         this.apellidoRepresentanteLegal = apellidoRepresentanteLegal;
         this.telefono = telefono;
         this.correo = correo;
+        this.direccion = direccion;
+        this.fechaRegistro = fechaRegistro;
     }
-    
-    
 
     public int getIdProveedores() {
         return idProveedores;
@@ -68,12 +72,12 @@ public class Proveedores {
         this.tipoActividad = tipoActividad;
     }
 
-    public String getNombreRepresentateLegal() {
+    public String getNombreRepresentanteLegal() {
         return nombreRepresentanteLegal;
     }
 
-    public void setNombreRepresentateLegal(String nombreRepresentateLegal) {
-        this.nombreRepresentanteLegal = nombreRepresentateLegal;
+    public void setNombreRepresentanteLegal(String nombreRepresentanteLegal) {
+        this.nombreRepresentanteLegal = nombreRepresentanteLegal;
     }
 
     public String getApellidoRepresentanteLegal() {
@@ -100,10 +104,28 @@ public class Proveedores {
         this.correo = correo;
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    
     @Override
     public String toString() {
-        return "Proveedores{" + "idProveedores=" + idProveedores + ", ruc=" + ruc + ", razonSocial=" + razonSocial + ", tipoActividad=" + tipoActividad + ", nombreRepresentateLegal=" + nombreRepresentanteLegal + ", apellidoRepresentanteLegal=" + apellidoRepresentanteLegal + ", telefono=" + telefono + ", correo=" + correo + '}';
+        return "Proveedores{" + "idProveedores=" + idProveedores + ", ruc=" + ruc + ", razonSocial=" + razonSocial + ", tipoActividad=" + tipoActividad + ", nombreRepresentanteLegal=" + nombreRepresentanteLegal + ", apellidoRepresentanteLegal=" + apellidoRepresentanteLegal + ", telefono=" + telefono + ", correo=" + correo + ", direccion=" + direccion + ", fechaRegistro=" + fechaRegistro + '}';
     }
+
 
     public Object getIdPersona() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

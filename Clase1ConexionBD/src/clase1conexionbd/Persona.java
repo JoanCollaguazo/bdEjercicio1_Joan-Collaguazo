@@ -5,6 +5,8 @@
  */
 package clase1conexionbd;
 
+import java.sql.Date;
+
 /**
  *
  * @author OxOrboy!
@@ -18,22 +20,18 @@ public class Persona {
     private String direccion;
     private String correo;
     private String telefono;
-    
+    private Date fechaRegistro;
+    private Date fechaActualizacion;
+    private Date fechaNacimiento;
+    private int genero;
 
-    public Persona(int idPersona,String nombre, String apellido, String direccion, String correo, String telefono, String cedula) {
-        this.idPersona = idPersona;
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.correo = correo;
-        this.telefono = telefono;
+    public int getIdPersona() {
+        return idPersona;
     }
 
-    public Persona(int idPersona) {
+    public void setIdPersona(int idPersona) {
         this.idPersona = idPersona;
     }
-    
 
     public String getCedula() {
         return cedula;
@@ -41,14 +39,6 @@ public class Persona {
 
     public void setCedula(String cedula) {
         this.cedula = cedula;
-    }
-    
-    public int getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
     }
 
     public String getNombre() {
@@ -91,20 +81,45 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    private void editnombre(String nombre) {
-        this.nombre = nombre;
+    public Date getFechaRegistro() {
+        return fechaRegistro;
     }
 
-    public Persona() {
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Date getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(Date fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getGenero() {
+        return genero;
+    }
+
+    public void setGenero(int genero) {
+        this.genero = genero;
     }
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + '}';
     }
 
     public Persona get(int rowIndex) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import clase1conexionbd.Proveedores;
+import com.toedter.calendar.JDateChooser;
 
 public class GestionInventario {
 
@@ -73,11 +74,12 @@ public class GestionInventario {
 
     public Inventario guardarEditarInventario() {
         Inventario inventario = new Inventario();
-        inventario.setCodigoPro(txtCodProductoInventario.getText());
-        inventario.setCodigoPro(txtDescripcionInventario.getText());
-        inventario.setCodigoPro(txtPrecioCompraInventario.getText());
-        inventario.setCodigoPro(txtPrecioVentaInventario.getText());
-        inventario.setCodigoPro(txtCantidadProductosInventario.getText());
+        inventario.setCodProducto(txtCodProductoInventario.getText());
+        inventario.setDescripcion(txtDescripcionInventario.getText());
+//        inventario.setFechaCaducidad();
+//        inventario.setPrecioCompraConIVA(txtPrecioCompraInventario.getText());
+//        inventario.setPrecioVenta(txtPrecioVentaInventario.getText());
+        inventario.setCantProductos(txtCantidadProductosInventario.getText());
         System.out.println(inventario.toString());
         return inventario;
     }

@@ -152,10 +152,11 @@ public class GestionProveedor {
         proveedores.setRuc(txtRucProveedor.getText());
         proveedores.setRazonSocial(txtRazonSocialProveedor.getText());
         proveedores.setTipoActividad(txtTipoActividadProveedor.getText());
-        proveedores.setNombreRepresentateLegal(txtNombreRepresentanteProveedor.getText());
+        proveedores.setNombreRepresentanteLegal(txtNombreRepresentanteProveedor.getText());
         proveedores.setApellidoRepresentanteLegal(txtApellidoRepresentanteProveedor.getText());
         proveedores.setTelefono(txtTelefonoProveedor.getText());
         proveedores.setCorreo(txtCorreoProveedor.getText());
+//        proveedores.setDireccion(txt);
         System.out.println(proveedores.toString());
         return proveedores;
     } 

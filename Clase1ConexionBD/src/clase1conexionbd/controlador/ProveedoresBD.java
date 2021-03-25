@@ -26,9 +26,8 @@ public class ProveedoresBD {
         Statement stm = null;
         //CONEXION CON LA BASE DE DATOS
         Connection con = null;
-        //SENTENCIA SQL
-        
-        String sql = "INSERT INTO `bdejercicio1`.`proveedores` (`ruc`, `razon_social`, `tipo_actividad`, `nombre_representante_legal`, `apellido_representante_legal`, `telefono`, `correo`) VALUES ('"+proveedor.getRuc()+"', '"+proveedor.getRazonSocial()+"', '"+proveedor.getTipoActividad()+"', '"+proveedor.getNombreRepresentateLegal()+"', '"+proveedor.getApellidoRepresentanteLegal()+"', '"+proveedor.getTelefono()+"', '"+proveedor.getCorreo()+"');";
+        //SENTENCIA SQL        
+        String sql = "INSERT INTO `ejercicio`.`proveedores` (`ruc`, `razon_social`, `tipo_actividad`, `nombre_representante_legal`, `apellido_representante_legal`, `telefono`, `correo`, `direccion`, `fecha_registro`) VALUES ('"+proveedor.getRuc()+"', '"+proveedor.getRazonSocial()+"', '"+proveedor.getTipoActividad()+"', '"+proveedor.getNombreRepresentanteLegal()+"', '"+proveedor.getApellidoRepresentanteLegal()+"', '"+proveedor.getTelefono()+"', '"+proveedor.getCorreo()+"', '"+proveedor.getDireccion()+"', '"+proveedor.getFechaRegistro()+"');";
         try {
             //ES UNA INSTANCIA DE LA CONEXION PREVIAMENTE CREADA
             Clase1ConexionBD conexion = new Clase1ConexionBD();
@@ -53,7 +52,7 @@ public class ProveedoresBD {
         //CONEXION CON LA BASE DE DATOS 
         Connection con = null;
         //CONTATENANDO LA OPCION DE ACTUALIZACION
-        String sql = "UPDATE `bdejercicio1`.`proveedores` SET `ruc` = '"+proveedor.getRuc()+"', `razon_social` = '"+proveedor.getRazonSocial()+"', `tipo_actividad` = '"+proveedor.getTipoActividad()+"', `nombre_representante_legal` = '"+proveedor.getNombreRepresentateLegal()+"', `apellido_representante_legal` = '"+proveedor.getApellidoRepresentanteLegal()+"', `telefono` = '"+proveedor.getTelefono()+"', `correo` = '"+proveedor.getCorreo()+"' WHERE (`idproveedores` = '"+proveedor.getIdProveedores()+"');";
+        String sql = "UPDATE `ejercicio`.`proveedores` SET `ruc` = '"+proveedor.getRuc()+"', `razon_social` = '"+proveedor.getRazonSocial()+"', `tipo_actividad` = '"+proveedor.getTipoActividad()+"', `nombre_representante_legal` = '"+proveedor.getNombreRepresentanteLegal()+"', `apellido_representante_legal` = '"+proveedor.getApellidoRepresentanteLegal()+"', `telefono` = '"+proveedor.getTelefono()+"', `correo` = '"+proveedor.getCorreo()+"', `direccion` = '"+proveedor.getDireccion()+"', `fecha_registro` = '"+proveedor.getFechaRegistro()+"' WHERE (`id_proveedores` = '"+proveedor.getIdProveedores()+"');";
         try {
             Clase1ConexionBD conexion = new Clase1ConexionBD();
             con = conexion.conectarBaseDatos();
@@ -73,7 +72,7 @@ public class ProveedoresBD {
         boolean eliminar = false;
         Statement stm = null;
         Connection con = null;
-        String sql = "DELETE FROM `bdejercicio1`.`proveedores` WHERE (`idproveedores` = '"+proveedor.getIdProveedores()+"');";
+        String sql = "DELETE FROM `ejercicio`.`proveedores` WHERE (`id_proveedores` = '"+proveedor.getIdPersona()+"');";
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
@@ -91,7 +90,7 @@ public class ProveedoresBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
 
-        String sql = "SELECT * FROM bdejercicio1.proveedores;";
+        String sql = "SELECT * FROM ejercicio.proveedores;";
 
         List<Proveedores> ListaProveedores = new ArrayList<Proveedores>();
 
@@ -105,10 +104,12 @@ public class ProveedoresBD {
                 c.setRuc(rs.getString(2));
                 c.setRazonSocial(rs.getString(3));
                 c.setTipoActividad(rs.getString(4));
-                c.setNombreRepresentateLegal(rs.getNString(5));
+                c.setNombreRepresentanteLegal(rs.getNString(5));
                 c.setApellidoRepresentanteLegal(rs.getString(6));
                 c.setTelefono(rs.getString(7));
                 c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
+                c.setFechaRegistro(rs.getDate(10));                
                 ListaProveedores.add(c);
 
             }
@@ -128,7 +129,7 @@ public class ProveedoresBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         List<Proveedores> proveedoresEncontrados = new ArrayList<>();
-        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE nombre_representante_legal like \"%" + nombre + "%\"";
+        String sql = "SELECT * FROM ejercicio.proveedores WHERE nombre_representante_legal like \"%" + nombre + "%\"";
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
@@ -139,10 +140,12 @@ public class ProveedoresBD {
                 c.setRuc(rs.getString(2));
                 c.setRazonSocial(rs.getString(3));
                 c.setTipoActividad(rs.getString(4));
-                c.setNombreRepresentateLegal(rs.getNString(5));
+                c.setNombreRepresentanteLegal(rs.getNString(5));
                 c.setApellidoRepresentanteLegal(rs.getString(6));
                 c.setTelefono(rs.getString(7));
                 c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
+                c.setFechaRegistro(rs.getDate(10));
                 proveedoresEncontrados.add(c);
             }
             stm.close();
@@ -160,7 +163,7 @@ public class ProveedoresBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         Proveedores c = null;
-        String sql = "SELECT * FROM bdejercicio1.proveedores WHERE nombre_representante_legal like \"%" + nombre + "%\"";
+        String sql = "SELECT * FROM ejercicio.proveedores WHERE nombre_representante_legal like \"%" + nombre + "%\"";
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
@@ -171,10 +174,12 @@ public class ProveedoresBD {
                 c.setRuc(rs.getString(2));
                 c.setRazonSocial(rs.getString(3));
                 c.setTipoActividad(rs.getString(4));
-                c.setNombreRepresentateLegal(rs.getNString(5));
+                c.setNombreRepresentanteLegal(rs.getNString(5));
                 c.setApellidoRepresentanteLegal(rs.getString(6));
                 c.setTelefono(rs.getString(7));
-                c.setCorreo(rs.getString(8));    
+                c.setCorreo(rs.getString(8));
+                c.setDireccion(rs.getString(9));
+                c.setFechaRegistro(rs.getDate(10));
             }
             stm.close();
             rs.close();

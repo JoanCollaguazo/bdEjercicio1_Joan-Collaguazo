@@ -20,7 +20,7 @@ public class Clase1ConexionBD {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
     private static final String pass = "ANTONYj1";
-    private static final String url = "jdbc:mysql://localhost:3306/bdejercicio1? useUnicode=true&use"
+    private static final String url = "jdbc:mysql://localhost:3306/ejercicio? useUnicode=true&use"
             + " JDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     //METODO CONECTOR

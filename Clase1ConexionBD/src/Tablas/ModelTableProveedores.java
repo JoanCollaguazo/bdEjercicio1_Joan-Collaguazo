@@ -50,7 +50,7 @@ public class ModelTableProveedores extends AbstractTableModel {
             case 2:
                 return proveedor.getTipoActividad();
             case 3:
-                return proveedor.getNombreRepresentateLegal();
+                return proveedor.getNombreRepresentanteLegal();
             case 4:
                 return proveedor.getApellidoRepresentanteLegal();
             case 5:

@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Date;
 import java.text.DecimalFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -121,7 +122,7 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
         jrbCedula = new javax.swing.JRadioButton();
         jrbPasaporte = new javax.swing.JRadioButton();
         jLabel16 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        JDateFechaNacimiento = new com.toedter.calendar.JDateChooser();
         txtTituloClientes = new javax.swing.JLabel();
         tablaClientes = new javax.swing.JScrollPane();
         modelTablePersona = new javax.swing.JTable();
@@ -331,6 +332,8 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
 
         jLabel16.setText("FECHA DE NACIMIENTO:");
 
+        JDateFechaNacimiento.setDateFormatString("y - mm - dd ");
+
         javax.swing.GroupLayout CuerpoRegistroLayout = new javax.swing.GroupLayout(CuerpoRegistro);
         CuerpoRegistro.setLayout(CuerpoRegistroLayout);
         CuerpoRegistroLayout.setHorizontalGroup(
@@ -370,7 +373,7 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
                         .addGroup(CuerpoRegistroLayout.createSequentialGroup()
                             .addComponent(jLabel16)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(JDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CuerpoRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(CuerpoRegistroLayout.createSequentialGroup()
                                 .addComponent(jLabel_correo)
@@ -445,7 +448,7 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CuerpoRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JDateFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(CuerpoRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_guardar)
@@ -586,6 +589,8 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
         jLabel12.setText("DIRECCION:");
 
         jLabel24.setText("FECHA REGISTRO:");
+
+        jDateChooser2.setDateFormatString("y - mm - dd ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -837,6 +842,12 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
 
         txtPrecioClienteNormal.setEditable(false);
         txtPrecioClienteNormal.setText("0.0");
+
+        jDateFechaCaducidad.setDateFormatString("y - mm - dd ");
+
+        jDateFechaRegistro.setDateFormatString("y - mm - dd y");
+
+        jDateFechaActualizacion.setDateFormatString("y - mm - dd ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1108,6 +1119,9 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
             JOptionPane.showMessageDialog(rootPane, "La persona con ese número de cédula ya se encuentra registrada en el sistema.");
         } else {
             Persona personaGuardar = gestionPersona.guardarEditar(false);
+            if (JDateFechaNacimiento.getDate()!=null) {
+                personaGuardar.setFechaNacimiento((Date) JDateFechaNacimiento.getDate());
+            }
             if (personaGuardar != null) {
                 if (controladorPersona.registrarPersona(personaGuardar)) {
                     JOptionPane.showMessageDialog(rootPane, "PERSONA REGISTRADA CON EXITO");
@@ -1654,6 +1668,7 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
     private javax.swing.JComboBox<String> ComboBoxInventarioBusqueda;
     private javax.swing.JComboBox<String> ComboParametroBusquedaProveedor;
     private javax.swing.JPanel CuerpoRegistro;
+    private com.toedter.calendar.JDateChooser JDateFechaNacimiento;
     private javax.swing.JMenuItem botonMenuBuscar;
     private javax.swing.JMenuItem botonMenuEliminar;
     private javax.swing.JMenuItem botonMenuGuardar;
@@ -1674,7 +1689,6 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_BuscarCedula;
     private javax.swing.JButton jButton_BuscarTelefono;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateFechaActualizacion;
     private com.toedter.calendar.JDateChooser jDateFechaCaducidad;
@@ -1778,6 +1792,7 @@ public class GestionContable extends javax.swing.JFrame implements ComunicacionV
         txt_direccion.setText(p.getDireccion());
         txt_correo.setText(p.getCorreo());
         txt_telefono.setText(p.getTelefono());
+        JDateFechaNacimiento.setDate(p.getFechaNacimiento());
         personaEditar = p;
         persona = p;
 

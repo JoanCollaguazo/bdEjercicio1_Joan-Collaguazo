@@ -51,7 +51,7 @@ public class Utilidades {
             }
         } catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
-        } catch (Exception err) {
+        } catch (Exception err) {            
             System.out.println("Una excepcion ocurrio en el proceso de validadcion");
             cedulaCorrecta = false;
         }
@@ -65,18 +65,16 @@ public class Utilidades {
     public boolean validarNumero(String numero) {
         //VERFICIAR SI EL NUMERO COMIENZA EN 0
         // Inserto el numero que debe ir al inicio del patron
-        Pattern p=Pattern.compile("[0]");
+        Pattern p = Pattern.compile("[0]");
         // Buscamos las coincidencias el el primer caracter del numero de telefono
-        Matcher matcher=p.matcher(numero.substring(0,1)); 
-        if(matcher.matches())
-        {
+        Matcher matcher = p.matcher(numero.substring(0, 1));
+        if (matcher.matches()) {
             System.out.println("El telefono empieza por 0");
             return true;
-        }else{            
-            System.out.println("El telefono NO empieza por 0");            
+        } else {
+            System.out.println("El telefono NO empieza por 0");
         }
-        
-        
+
         if (numero.isEmpty()) {
             return false;
         } else if (numero.length() < 10) {
@@ -99,18 +97,16 @@ public class Utilidades {
             return true;
         } else {
             return false;
-        }                
+        }
     }
- 
-    	public boolean validarCodigo(String cadena) {
-		if (cadena.matches("[0-9]*")) {
-			return true;
-                        
-		} else {
-                    System.out.println("NO INGRESO DATOS NUMERICOS EN CAMPO CODIGO");
-			return false;
-		}
-	}
-    
-    
+
+    public boolean validarNumeroInventario(String numero) {
+        try {
+            int validarNumero = Integer.parseInt(numero);
+            return true;
+        } catch (Exception e) {            
+            return false;
+        }
+    }
+
 }
