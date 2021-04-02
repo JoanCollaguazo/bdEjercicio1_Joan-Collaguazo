@@ -22,6 +22,7 @@ public class Inventario {
     private double precioMayorista;
     private double precioClienteFjo;
     private double precioClienteNormal;
+    private int Cantidad;
     private Date fechaCaducidad;
     private Date fechaRegistro;
     private Date fechaActualizacion;
@@ -30,7 +31,7 @@ public class Inventario {
 
     }
 
-    public Inventario(int idInventario, String codProducto, String cantProductos, String descripcion, double precioCompraSinIVA, double precioCompraConIVA, double precioMayorista, double precioClienteFjo, double precioClienteNormal, Date fechaCaducidad, Date fechaRegistro, Date fechaActualizacion) {
+    public Inventario(int idInventario, String codProducto, String cantProductos, String descripcion, double precioCompraSinIVA, double precioCompraConIVA, double precioMayorista, double precioClienteFjo, double precioClienteNormal, int Cantidad, Date fechaCaducidad, Date fechaRegistro, Date fechaActualizacion) {
         this.idInventario = idInventario;
         this.codProducto = codProducto;
         this.cantProductos = cantProductos;
@@ -40,6 +41,7 @@ public class Inventario {
         this.precioMayorista = precioMayorista;
         this.precioClienteFjo = precioClienteFjo;
         this.precioClienteNormal = precioClienteNormal;
+        this.Cantidad = Cantidad;
         this.fechaCaducidad = fechaCaducidad;
         this.fechaRegistro = fechaRegistro;
         this.fechaActualizacion = fechaActualizacion;
@@ -63,6 +65,14 @@ public class Inventario {
 
     public String getCantProductos() {
         return cantProductos;
+    }
+
+    public int getCantidad() {
+        return Cantidad;
+    }
+
+    public void setCantidad(int Cantidad) {
+        this.Cantidad = Cantidad;
     }
 
     public void setCantProductos(String cantProductos) {
@@ -143,6 +153,9 @@ public class Inventario {
 
     @Override
     public String toString() {
-        return "Inventario{" + "idInventario=" + idInventario + ", codProducto=" + codProducto + ", cantProductos=" + cantProductos + ", descripcion=" + descripcion + ", precioCompraSinIVA=" + precioCompraSinIVA + ", precioCompraConIVA=" + precioCompraConIVA + ", precioMayorista=" + precioMayorista + ", precioClienteFjo=" + precioClienteFjo + ", precioClienteNormal=" + precioClienteNormal + ", fechaCaducidad=" + fechaCaducidad + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + '}';
+        return "Inventario{" + "idInventario=" + idInventario + ", codProducto=" + codProducto + ", cantProductos=" + cantProductos + ", descripcion=" + descripcion + ", precioCompraSinIVA=" + precioCompraSinIVA + ", precioCompraConIVA=" + precioCompraConIVA + ", precioMayorista=" + precioMayorista + ", precioClienteFjo=" + precioClienteFjo + ", precioClienteNormal=" + precioClienteNormal + ", Cantidad=" + Cantidad + ", fechaCaducidad=" + fechaCaducidad + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + '}';
     }
+
+    
+
 }

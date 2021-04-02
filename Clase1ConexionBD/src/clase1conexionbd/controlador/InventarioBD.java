@@ -203,5 +203,45 @@ public class InventarioBD {
         }
         return listaInventarioDescripcion;
     }
+//DESDE AQUI ABAJO ESTAS PROGRAMANDO::::::::::::  
 
+    public List<Inventario> obtenerProductosInventarioID(String id, int Cantidad) {
+        System.out.println("descripcion" + id);
+        Connection con = null;
+        Statement stm = null;
+        //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
+        ResultSet rs = null;
+        String sql = "SELECT * FROM ejercicio.inventario where idinventario = '" + id + "';";
+        List<Inventario> listaInventarioIDNV = new ArrayList<Inventario>();
+
+        try {
+            con = new Clase1ConexionBD().conectarBaseDatos();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                Inventario c = new Inventario();
+                c.setIdInventario(rs.getInt(1));
+                c.setCodProducto(rs.getString(2));
+                c.setCantProductos(rs.getString(3));
+                c.setDescripcion(rs.getString(4));
+                c.setPrecioCompraSinIVA(rs.getDouble(5));
+                c.setPrecioCompraConIVA(rs.getDouble(6));
+                c.setPrecioMayorista(rs.getDouble(7));
+                c.setPrecioClienteFjo(rs.getDouble(8));
+                c.setPrecioClienteNormal(rs.getDouble(9));
+                c.setFechaCaducidad(rs.getDate(10));
+                c.setFechaRegistro(rs.getDate(11));
+                c.setFechaActualizacion(rs.getDate(12));
+                c.setCantidad(Cantidad);
+                listaInventarioIDNV.add(c);
+            }
+            stm.close();
+            rs.close();
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return listaInventarioIDNV;
+    }
 }

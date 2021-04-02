@@ -31,12 +31,11 @@ public class PersonaBD {
         String sql;
         if (persona.getFechaNacimiento() == null) {
             sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "');";
-        }else{
-        sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`, `fecha_nacimiento` ) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "', '" + persona.getFechaNacimiento()+ "');";
+        } else {
+            sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`, `fecha_nacimiento` ) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "', '" + persona.getFechaNacimiento() + "');";
         }
 
         //SENTENCIA SQL
-        
         try {
             //ES UNA INSTANCIA DE LA CONEXION PREVIAMENTE CREADA
             Clase1ConexionBD conexion = new Clase1ConexionBD();
@@ -349,4 +348,5 @@ public class PersonaBD {
         return personasEncontradasCorreo;
 
     }
+
 }
