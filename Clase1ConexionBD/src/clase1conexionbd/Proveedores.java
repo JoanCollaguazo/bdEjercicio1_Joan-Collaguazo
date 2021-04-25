@@ -5,7 +5,7 @@
  */
 package clase1conexionbd;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *

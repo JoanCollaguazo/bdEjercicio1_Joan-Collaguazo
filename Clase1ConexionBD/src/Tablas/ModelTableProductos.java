@@ -7,6 +7,7 @@ package Tablas;
 
 import Vistas.GestionContable;
 import clase1conexionbd.Inventario;
+import clase1conexionbd.ProductoVenta;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -17,17 +18,17 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTableProductos extends AbstractTableModel {
 
     private String[] m_colNames = {"CANTIDAD", "DESCRIPCION", "SUBTOTAL", "TOTAL"};
-    private List<Inventario> productos;
+    private List<ProductoVenta> productoVenta;
     private GestionContable gContable;
 
-    public ModelTableProductos(List<Inventario> productos, GestionContable gCOntable) {
-        this.productos = productos;
+    public ModelTableProductos(List<ProductoVenta> productoVenta, GestionContable gCOntable) {
+        this.productoVenta = productoVenta;
         this.gContable = gCOntable;
     }
 
     @Override
     public int getRowCount() {
-        return productos.size();
+        return productoVenta.size();
     }
 
     @Override
@@ -37,17 +38,16 @@ public class ModelTableProductos extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Inventario productos = this.productos.get(rowIndex);
+        ProductoVenta proveedor = productoVenta.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return productos.getCantidad();
+                return proveedor.getCantidad();
             case 1:
-                return productos.getDescripcion();
+                return proveedor.getDescripcion();
             case 2:
-                return productos.getPrecioCompraSinIVA();
+                return proveedor.getSubTotal();
             case 3:
-                double a = productos.getCantidad() * productos.getPrecioCompraSinIVA();
-                return a;
+                return proveedor.getTotal();
         }
         return new String();
     }
@@ -57,17 +57,20 @@ public class ModelTableProductos extends AbstractTableModel {
         return m_colNames[column]; //To change body of generated methods, choose Tools | Templates.
     }
 
-//    @Override
-//    public boolean isCellEditable(int rowIndex, int columnIndex) {
-//        gContable.clickInventario(productos.get(rowIndex));
-//        return super.isCellEditable(rowIndex, columnIndex); //To change body of generated methods, choose Tools | Templates.
-//    }
-    public List<Inventario> getProductos() {
-        return productos;
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        //OJO CON ESTA LINEA DE CODIGO: 
+        gContable.clickProductoVender(productoVenta.get(rowIndex));
+        return super.isCellEditable(rowIndex, columnIndex); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setProductos(List<Inventario> productos) {
-        this.productos = productos;
+
+    public List<ProductoVenta> getProductos() {
+        return productoVenta;
+    }
+
+    public void setProductos(List<ProductoVenta> inventarios) {
+        this.productoVenta = inventarios;
     }
 
 }

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package clase1conexionbd.controlador;
+
+import Utilidad.Utilidades;
 import clase1conexionbd.Clase1ConexionBD;
 import clase1conexionbd.Persona;
 import clase1conexionbd.Proveedores;
@@ -19,15 +21,22 @@ import java.util.List;
  * @author joang
  */
 public class ProveedoresBD {
-    
+
+    public Utilidades utilidades;
+
+    public ProveedoresBD() {
+        utilidades = new Utilidades();
+    }
+
     public boolean registrarProveedor(Proveedores proveedor) {
+
         boolean registrar = false;
         //INTEFAZ DE ACCESO A LA BASE DE DATOS
         Statement stm = null;
         //CONEXION CON LA BASE DE DATOS
         Connection con = null;
         //SENTENCIA SQL        
-        String sql = "INSERT INTO `ejercicio`.`proveedores` (`ruc`, `razon_social`, `tipo_actividad`, `nombre_representante_legal`, `apellido_representante_legal`, `telefono`, `correo`, `direccion`, `fecha_registro`) VALUES ('"+proveedor.getRuc()+"', '"+proveedor.getRazonSocial()+"', '"+proveedor.getTipoActividad()+"', '"+proveedor.getNombreRepresentanteLegal()+"', '"+proveedor.getApellidoRepresentanteLegal()+"', '"+proveedor.getTelefono()+"', '"+proveedor.getCorreo()+"', '"+proveedor.getDireccion()+"', '"+proveedor.getFechaRegistro()+"');";
+        String sql = "INSERT INTO `ejercicio`.`proveedores` (`ruc`, `razon_social`, `tipo_actividad`, `nombre_representante_legal`, `apellido_representante_legal`, `telefono`, `correo`, `direccion`, `fecha_registro`) VALUES ('" + proveedor.getRuc() + "', '" + proveedor.getRazonSocial() + "', '" + proveedor.getTipoActividad() + "', '" + proveedor.getNombreRepresentanteLegal() + "', '" + proveedor.getApellidoRepresentanteLegal() + "', '" + proveedor.getTelefono() + "', '" + proveedor.getCorreo() + "', '" + proveedor.getDireccion() + "', '" + utilidades.devolverFecha(proveedor.getFechaRegistro()) + "');";
         try {
             //ES UNA INSTANCIA DE LA CONEXION PREVIAMENTE CREADA
             Clase1ConexionBD conexion = new Clase1ConexionBD();
@@ -52,7 +61,7 @@ public class ProveedoresBD {
         //CONEXION CON LA BASE DE DATOS 
         Connection con = null;
         //CONTATENANDO LA OPCION DE ACTUALIZACION
-        String sql = "UPDATE `ejercicio`.`proveedores` SET `ruc` = '"+proveedor.getRuc()+"', `razon_social` = '"+proveedor.getRazonSocial()+"', `tipo_actividad` = '"+proveedor.getTipoActividad()+"', `nombre_representante_legal` = '"+proveedor.getNombreRepresentanteLegal()+"', `apellido_representante_legal` = '"+proveedor.getApellidoRepresentanteLegal()+"', `telefono` = '"+proveedor.getTelefono()+"', `correo` = '"+proveedor.getCorreo()+"', `direccion` = '"+proveedor.getDireccion()+"', `fecha_registro` = '"+proveedor.getFechaRegistro()+"' WHERE (`id_proveedores` = '"+proveedor.getIdProveedores()+"');";
+        String sql = "UPDATE `ejercicio`.`proveedores` SET `ruc` = '" + proveedor.getRuc() + "', `razon_social` = '" + proveedor.getRazonSocial() + "', `tipo_actividad` = '" + proveedor.getTipoActividad() + "', `nombre_representante_legal` = '" + proveedor.getNombreRepresentanteLegal() + "', `apellido_representante_legal` = '" + proveedor.getApellidoRepresentanteLegal() + "', `telefono` = '" + proveedor.getTelefono() + "', `correo` = '" + proveedor.getCorreo() + "', `direccion` = '" + proveedor.getDireccion() + "', `fecha_registro` = '" + proveedor.getFechaRegistro() + "' WHERE (`id_proveedores` = '" + proveedor.getIdProveedores() + "');";
         try {
             Clase1ConexionBD conexion = new Clase1ConexionBD();
             con = conexion.conectarBaseDatos();
@@ -72,7 +81,7 @@ public class ProveedoresBD {
         boolean eliminar = false;
         Statement stm = null;
         Connection con = null;
-        String sql = "DELETE FROM `ejercicio`.`proveedores` WHERE (`id_proveedores` = '"+proveedor.getIdPersona()+"');";
+        String sql = "DELETE FROM `ejercicio`.`proveedores` WHERE (`id_proveedores` = '" + proveedor.getIdPersona() + "');";
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();
             stm = con.createStatement();
@@ -84,6 +93,7 @@ public class ProveedoresBD {
 
         return eliminar;
     }
+
     public List<Proveedores> obtenerProveedores() {
         Connection con = null;
         Statement stm = null;
@@ -109,7 +119,7 @@ public class ProveedoresBD {
                 c.setTelefono(rs.getString(7));
                 c.setCorreo(rs.getString(8));
                 c.setDireccion(rs.getString(9));
-                c.setFechaRegistro(rs.getDate(10));                
+                c.setFechaRegistro(rs.getDate(10));
                 ListaProveedores.add(c);
 
             }
@@ -122,8 +132,8 @@ public class ProveedoresBD {
         }
         return ListaProveedores;
     }
-    
-     public List<Proveedores> obtenerProveedorNombre(String nombre) {
+
+    public List<Proveedores> obtenerProveedorNombre(String nombre) {
         Connection con = null;
         Statement stm = null;
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
@@ -157,7 +167,8 @@ public class ProveedoresBD {
         }
         return proveedoresEncontrados;
     }
-     public Proveedores obtenerProveedoNombre(String nombre) {
+
+    public Proveedores obtenerProveedoNombre(String nombre) {
         Connection con = null;
         Statement stm = null;
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
@@ -190,5 +201,5 @@ public class ProveedoresBD {
         }
         return c;
     }
-    
+
 }

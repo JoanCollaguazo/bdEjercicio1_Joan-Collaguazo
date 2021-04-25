@@ -7,6 +7,7 @@ package clase1conexionbd.controlador;
 
 import clase1conexionbd.Clase1ConexionBD;
 import clase1conexionbd.Inventario;
+import clase1conexionbd.ProductoVendido;
 import clase1conexionbd.Proveedores;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -205,7 +206,7 @@ public class InventarioBD {
     }
 //DESDE AQUI ABAJO ESTAS PROGRAMANDO::::::::::::  
 
-    public List<Inventario> obtenerProductosInventarioID(String id, int Cantidad) {
+    public List<Inventario> obtenerProductosInventarioID(String id) {
         System.out.println("descripcion" + id);
         Connection con = null;
         Statement stm = null;
@@ -232,7 +233,7 @@ public class InventarioBD {
                 c.setFechaCaducidad(rs.getDate(10));
                 c.setFechaRegistro(rs.getDate(11));
                 c.setFechaActualizacion(rs.getDate(12));
-                c.setCantidad(Cantidad);
+                //c.setCantidad(Cantidad);
                 listaInventarioIDNV.add(c);
             }
             stm.close();
@@ -243,5 +244,69 @@ public class InventarioBD {
             System.out.println("ERROR: " + e.getMessage());
         }
         return listaInventarioIDNV;
+    }
+
+    //METODO QUE NO ES DE TIPO LISTA PARA BUSCAR POR ID INVENTARIO: 
+    public Inventario obtenerProductosInventarioCodigoVenta(String id) {
+        System.out.println("CODIGO INGRESADO: " + id);
+        Connection con = null;
+        Statement stm = null;
+        //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
+        ResultSet rs = null;
+        Inventario c = null;
+        String sql = "SELECT * FROM ejercicio.inventario WHERE codigo_pro = '" + id + "';";
+
+        try {
+            con = new Clase1ConexionBD().conectarBaseDatos();
+            stm = con.createStatement();
+            rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                c = new Inventario();
+                c.setIdInventario(rs.getInt(1));
+                c.setCodProducto(rs.getString(2));
+                c.setCantProductos(rs.getString(3));
+                c.setDescripcion(rs.getString(4));
+                c.setPrecioCompraSinIVA(rs.getDouble(5));
+                c.setPrecioCompraConIVA(rs.getDouble(6));
+                c.setPrecioMayorista(rs.getDouble(7));
+                c.setPrecioClienteFjo(rs.getDouble(8));
+                c.setPrecioClienteNormal(rs.getDouble(9));
+                c.setFechaCaducidad(rs.getDate(10));
+                c.setFechaRegistro(rs.getDate(11));
+                c.setFechaActualizacion(rs.getDate(12));
+
+            }
+            stm.close();
+            rs.close();
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
+        }
+        return c;
+
+    }
+    public boolean registrarProductoVendido(ProductoVendido producto) {
+
+        boolean registrar = false;
+        //INTEFAZ DE ACCESO A LA BASE DE DATOS
+        Statement stm = null;
+        //CONEXION CON LA BASE DE DATOS
+        Connection con = null;
+        //SENTENCIA SQL        
+        String sql = "INSERT INTO `ejercicio`.`producto_vendido` (`inventario_id_inventario`, `id_nota_venta`, `cantidad_productos`, `valor_total`, `descripcionInventario`) VALUES ('"+producto.getIdInventario()+"', '"+producto.getIdNotaVenta()+"', '"+producto.getCantidadProductos()+"', '"+producto.getValorTotal()+"', '"+producto.getDescripcionInventario()+"');";
+        try {
+            //ES UNA INSTANCIA DE LA CONEXION PREVIAMENTE CREADA
+            Clase1ConexionBD conexion = new Clase1ConexionBD();
+            con = conexion.conectarBaseDatos();
+            stm = con.createStatement();
+            stm.execute(sql);
+            registrar = true;
+            stm.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return registrar;
     }
 }

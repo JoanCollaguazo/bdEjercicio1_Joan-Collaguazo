@@ -8,6 +8,7 @@ package Tablas;
 import clase1conexionbd.Persona;
 import clase1conexionbd.Proveedores;
 import clase1conexionbd.Inventario;
+import clase1conexionbd.ProductoVenta;
 
 
 /**
@@ -18,5 +19,6 @@ public interface ComunicacionVistaModeloTablas {
     void clickPersona(Persona p);
     void clickInventario(Inventario p);
     void clickProveedores(Proveedores p);
+    void clickProductoVender(ProductoVenta p);
     
 }

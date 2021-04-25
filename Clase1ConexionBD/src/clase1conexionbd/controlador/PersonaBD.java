@@ -5,6 +5,7 @@
  */
 package clase1conexionbd.controlador;
 
+import Utilidad.Utilidades;
 import clase1conexionbd.Clase1ConexionBD;
 import clase1conexionbd.Persona;
 import java.sql.Connection;
@@ -13,14 +14,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author OxOrboy!
  */
 public class PersonaBD {
+
+    public Utilidades utilidades;
+
+    public PersonaBD() {
+        utilidades = new Utilidades();
+    }
 
     public boolean registrarPersona(Persona persona) {
         boolean registrar = false;
@@ -30,11 +36,10 @@ public class PersonaBD {
         Connection con = null;
         String sql;
         if (persona.getFechaNacimiento() == null) {
-            sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "');";
+            sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + utilidades.devolverFecha(persona.getFechaRegistro()) + "', '" + persona.getGenero() + "');";
         } else {
-            sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`, `fecha_nacimiento` ) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + persona.getFechaRegistro() + "', '" + persona.getGenero() + "', '" + persona.getFechaNacimiento() + "');";
+            sql = "INSERT INTO `ejercicio`.`persona` (`cedula`, `nombres`, `apellidos`, `direccion`, `correo`, `telefono`, `fecha_registro`, `genero`, `fecha_nacimiento` ) VALUES ('" + persona.getCedula() + "', '" + persona.getNombre() + "', '" + persona.getApellido() + "', '" + persona.getDireccion() + "', '" + persona.getCorreo() + "', '" + persona.getTelefono() + "', '" + utilidades.devolverFecha(persona.getFechaRegistro()) + "', '" + persona.getGenero() + "', '" + utilidades.devolverFecha(persona.getFechaNacimiento()) + "');";
         }
-
         //SENTENCIA SQL
         try {
             //ES UNA INSTANCIA DE LA CONEXION PREVIAMENTE CREADA
@@ -60,7 +65,7 @@ public class PersonaBD {
         //CONEXION CON LA BASE DE DATOS 
         Connection con = null;
         //CONTATENANDO LA OPCION DE ACTUALIZACION
-        String sql = "UPDATE `ejercicio`.`persona` SET `cedula` = '" + persona.getCedula() + "', `nombres` = '" + persona.getNombre() + "', `apellidos` = '" + persona.getApellido() + "', `direccion` = '" + persona.getDireccion() + "', `correo` = '" + persona.getCorreo() + "', `telefono` = '" + persona.getTelefono() + "', `fecha_registro` = '" + persona.getFechaRegistro() + "', `genero` = '" + persona.getGenero() + "' WHERE (`idpersona` = '" + persona.getIdPersona() + "');";
+        String sql = "UPDATE `ejercicio`.`persona` SET `cedula` = '"+persona.getCedula()+"', `nombres` = '"+persona.getNombre()+" ', `apellidos` = '"+persona.getApellido()+"', `direccion` = '"+persona.getDireccion()+"', `correo` = '"+persona.getCorreo()+"', `telefono` = '"+persona.getTelefono()+"', `fecha_registro` = '"+persona.getFechaRegistro()+"', `genero` = '"+persona.getGenero()+"', `fecha_actualizacion` = '"+utilidades.devolverFecha(persona.getFechaActualizacion())+"', `fecha_nacimiento` = '"+utilidades.devolverFecha(persona.getFechaNacimiento())+"' WHERE (`idpersona` = '"+persona.getIdPersona()+"');";
         try {
             Clase1ConexionBD conexion = new Clase1ConexionBD();
             con = conexion.conectarBaseDatos();
@@ -210,7 +215,7 @@ public class PersonaBD {
         //SENTECIA DE JDBC  PARA OBTENER VALORES DE LA BASE DE DATOS
         ResultSet rs = null;
         List<Persona> personasEncontradas = new ArrayList<>();
-        String sql = "SELECT * FROM ejercicio.persona WHERE nombre like \"%" + nombre + "%\"";
+        String sql = "SELECT * FROM ejercicio.persona WHERE nombres like \"%" + nombre + "%\"";
 
         try {
             con = new Clase1ConexionBD().conectarBaseDatos();

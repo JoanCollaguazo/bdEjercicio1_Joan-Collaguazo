@@ -7,12 +7,12 @@ package Vistas;
 
 import Utilidad.Utilidades;
 import clase1conexionbd.Persona;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import java.util.Date;
+
 
 public class GestionPersona {
 
@@ -94,14 +94,6 @@ public class GestionPersona {
         this.utilidades = utilidades;
     }
 
-    public JComboBox getJcbGenero() {
-        return jcbGenero;
-    }
-
-    public void setJcbGenero(JComboBox jcbGenero) {
-        this.jcbGenero = jcbGenero;
-    }
-
     public JFrame getFrameGestionContable() {
         return frameGestionContable;
     }
@@ -110,6 +102,15 @@ public class GestionPersona {
         this.frameGestionContable = frameGestionContable;
     }
 
+    public JComboBox getJcbGenero() {
+        return jcbGenero;
+    }
+
+    public void setJcbGenero(JComboBox jcbGenero) {
+        this.jcbGenero = jcbGenero;
+    }
+
+    
     public void limpiarCamposPersona() {
         txtCedula.setText(" ");
         txtNombres.setText(" ");
@@ -179,11 +180,11 @@ public class GestionPersona {
         persona.setCorreo(txtCorreo.getText());
         persona.setTelefono(txtTelefono.getText());
         persona.setGenero(jcbGenero.getSelectedIndex());
-//        if (isEditar) {
-//                  persona.setFechaActualizacion(new Date());
-//        } else {
-//            persona.setFechaRegistro(new Date());
-//        }
+        if (isEditar) {
+                  persona.setFechaActualizacion(new Date());
+        } else {
+            persona.setFechaRegistro(new Date());
+        }
         System.out.println(persona.toString());
         return persona;
 

@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import clase1conexionbd.Proveedores;
-import com.toedter.calendar.JDateChooser;
 
 public class GestionInventario {
 

@@ -5,7 +5,7 @@
  */
 package clase1conexionbd;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -116,10 +116,6 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" + "idPersona=" + idPersona + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", correo=" + correo + ", telefono=" + telefono + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + '}';
-    }
-
-    public Persona get(int rowIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

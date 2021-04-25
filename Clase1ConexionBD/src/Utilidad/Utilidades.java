@@ -5,6 +5,8 @@
  */
 package Utilidad;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,7 +53,7 @@ public class Utilidades {
             }
         } catch (NumberFormatException nfe) {
             cedulaCorrecta = false;
-        } catch (Exception err) {            
+        } catch (Exception err) {
             System.out.println("Una excepcion ocurrio en el proceso de validadcion");
             cedulaCorrecta = false;
         }
@@ -104,9 +106,18 @@ public class Utilidades {
         try {
             int validarNumero = Integer.parseInt(numero);
             return true;
-        } catch (Exception e) {            
+        } catch (Exception e) {
             return false;
         }
+    }
+
+    public String devolverFecha(Date fecha) {
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+        return f.format(fecha);
+    }
+
+    public double dosDecimales(double entrada) {
+        return Math.round(entrada * 100.0) / 100.0;
     }
 
 }

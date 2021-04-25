@@ -26,6 +26,7 @@ public class Inventario {
     private Date fechaCaducidad;
     private Date fechaRegistro;
     private Date fechaActualizacion;
+    private int cantidadProductoVender;
 
     public Inventario() {
 
@@ -45,6 +46,14 @@ public class Inventario {
         this.fechaCaducidad = fechaCaducidad;
         this.fechaRegistro = fechaRegistro;
         this.fechaActualizacion = fechaActualizacion;
+    }
+    //ATRIBUTO TEMPORAL PARA LA DEFINICION DEL NUMERO DE PRODUCTOS SELECCIONADOS POR EL CLIENTE:
+    public int getCantidadProductoVender() {
+        return cantidadProductoVender;
+    }
+
+    public void setCantidadProductoVender(int cantidadProductoVender) {
+        this.cantidadProductoVender = cantidadProductoVender;
     }
 
     public int getIdInventario() {
@@ -155,7 +164,5 @@ public class Inventario {
     public String toString() {
         return "Inventario{" + "idInventario=" + idInventario + ", codProducto=" + codProducto + ", cantProductos=" + cantProductos + ", descripcion=" + descripcion + ", precioCompraSinIVA=" + precioCompraSinIVA + ", precioCompraConIVA=" + precioCompraConIVA + ", precioMayorista=" + precioMayorista + ", precioClienteFjo=" + precioClienteFjo + ", precioClienteNormal=" + precioClienteNormal + ", Cantidad=" + Cantidad + ", fechaCaducidad=" + fechaCaducidad + ", fechaRegistro=" + fechaRegistro + ", fechaActualizacion=" + fechaActualizacion + '}';
     }
-
-    
 
 }

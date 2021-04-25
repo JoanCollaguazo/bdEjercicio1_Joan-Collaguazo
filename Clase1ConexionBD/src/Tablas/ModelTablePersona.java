@@ -17,9 +17,10 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTablePersona extends AbstractTableModel {
 
     //CREACION DE LOS NOMBRES DE LAS COLUMNAS USANDO ARREGLO
-    private String[] m_colNames = {"CEDULA", "NOMBRE", "APELLIDOS", "DIRECCION", "CORREO", "TELEFONO", "FECHA REGISTRO"};
+    private String[] m_colNames = {"CEDULA", "NOMBRE", "APELLIDOS", "DIRECCION", "CORREO", "TELEFONO","CONTRASEÑA"};
     private List<Persona> personas;
     private GestionContable gContable;
+    
 
     public ModelTablePersona(List<Persona> persona, GestionContable gContable) {
         this.personas = persona;
@@ -56,8 +57,6 @@ public class ModelTablePersona extends AbstractTableModel {
                 return persona.getTelefono();
             case 6:
                 return persona.getFechaRegistro();
-//            case 7:
-//                return persona.getGenero();
 
         }
         return new String();
